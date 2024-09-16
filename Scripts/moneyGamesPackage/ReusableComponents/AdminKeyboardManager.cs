@@ -19,7 +19,7 @@ public class AdminKeyboardManager : Singleton<AdminKeyboardManager> {
 
     private void FullReloadGame() {
         PlayerPrefs.DeleteAll();
-        SceneManager.LoadScene("PlayerSelectScene");
+        SceneManager.LoadScene(0);
     }
 
     private void ReloadCurrentScene() {

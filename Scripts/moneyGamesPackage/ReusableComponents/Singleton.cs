@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
@@ -14,7 +13,5 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
         }
     }
 
-    protected virtual void OnFirstInited() {
-        
-    }
+    protected virtual void OnFirstInited() { }
 }
