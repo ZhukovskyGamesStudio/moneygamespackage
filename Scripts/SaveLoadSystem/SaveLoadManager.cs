@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class SaveLoadManager<TManager, TProfile> : Singleton<TManager> where TProfile : SaveProfile, new()
