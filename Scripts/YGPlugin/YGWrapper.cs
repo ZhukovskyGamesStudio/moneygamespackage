@@ -27,7 +27,7 @@ public static class YGWrapper {
 #if UNITY_WEBGL
         return YandexGame.ServerTime();
 #else
-        long res = Convert.ToInt64((DateTime.Now  - DateTime.UnixEpoch).TotalMilliseconds);
+        long res = RealTimeTools.GetTimeSpanMilliseconds(DateTime.Now  - DateTime.UnixEpoch);
        // Debug.Log($"Disabled on current platform: return DateTime.now: {res}, fixed Yandex time: {YandexGame.ServerTime()}");
         return res;
 #endif
