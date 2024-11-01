@@ -7,13 +7,16 @@ public class AdminKeyboardManager : Singleton<AdminKeyboardManager> {
     [SerializeField]
     private KeyCode _controlKeycode = KeyCode.LeftAlt;
 
-    private Dictionary<KeyCode, Action> _keyboardCommands = new Dictionary<KeyCode, Action>();
+    [SerializeField]
+    private KeyCode _fullReloadGame, _reloadCurrentScene;
+
+    protected Dictionary<KeyCode, Action> _keyboardCommands = new Dictionary<KeyCode, Action>();
 
     protected override void OnFirstInited() {
         base.OnFirstInited();
         _keyboardCommands = new Dictionary<KeyCode, Action>() {
-            { KeyCode.R, FullReloadGame },
-            { KeyCode.T, ReloadCurrentScene }
+            { _fullReloadGame, FullReloadGame },
+            { _reloadCurrentScene, ReloadCurrentScene },
         };
     }
 
