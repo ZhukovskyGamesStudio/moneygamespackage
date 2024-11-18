@@ -28,8 +28,9 @@ public static class YGWrapper {
         return YandexGame.ServerTime();
 #else
         long res = RealTimeTools.GetTimeSpanMilliseconds(DateTime.Now  - DateTime.UnixEpoch);
+        long addedAdminTime = RealTimeTools.GetTimeSpanMilliseconds(TimeSpan.FromHours(PlayerPrefs.GetFloat("AdminAddedHours")));
        // Debug.Log($"Disabled on current platform: return DateTime.now: {res}, fixed Yandex time: {YandexGame.ServerTime()}");
-        return res;
+        return res + addedAdminTime;
 #endif
     }
 }

@@ -6,6 +6,23 @@ public static class RealTimeTools {
         return YGWrapper.GetServerTime() / GetTimeSpanMilliseconds(interval);
     }
 
+    public static long GetIntervalIndex(TimeSpan interval, TimeSpan pauseBetweenIntervals) {
+        return YGWrapper.GetServerTime() / GetTimeSpanMilliseconds(interval + pauseBetweenIntervals);
+    }
+
+    public static bool IsIntervalActiveHours(float interval, float startTime, float endTime) {
+        return IsIntervalActive(TimeSpan.FromHours(interval), TimeSpan.FromHours(startTime), TimeSpan.FromHours(endTime));
+    }
+
+    public static long GetCurrentIntervalStart(TimeSpan interval) {
+        return GetIntervalIndex(interval) * GetTimeSpanMilliseconds(interval);
+    }
+
+    public static bool IsIntervalActive(TimeSpan interval, TimeSpan startTime, TimeSpan endTime) {
+        var timeInInterval = YGWrapper.GetServerTime() % GetTimeSpanMilliseconds(interval);
+        return GetTimeSpanMilliseconds(startTime) <= timeInInterval && timeInInterval <= GetTimeSpanMilliseconds(endTime);
+    }
+
     public static long GetTimeSpanMilliseconds(TimeSpan span) {
         return Convert.ToInt64(span.TotalMilliseconds);
     }
