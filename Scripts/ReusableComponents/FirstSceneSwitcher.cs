@@ -2,11 +2,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class FirstSceneSwitcher : MonoBehaviour {
-    private static bool _isSwitched;
+    public static bool IsSwitched { get; private set; }
 
     private void Awake() {
-        if (!_isSwitched) {
-            _isSwitched = true;
+        if (!IsSwitched) {
+            IsSwitched = true;
             SceneManager.LoadScene(0);
         } else {
             Destroy(gameObject);
