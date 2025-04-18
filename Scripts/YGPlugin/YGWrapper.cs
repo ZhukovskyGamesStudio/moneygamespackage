@@ -8,7 +8,7 @@ using YG;
 
 public static class YGWrapper {
     public static void SendYandexMetrica(string eventName, string parameter) {
-#if UNITY_WEBGL
+#if UNITY_WEBGL && YG_WEBGL_PLATFORM
         YandexMetrica.Send(eventName, new Dictionary<string, string>() { { eventName, parameter } });
 #else
         Debug.Log($"Disabled on current platform: Yandex metrica event: {eventName} amount: {parameter}");
@@ -16,7 +16,7 @@ public static class YGWrapper {
     }
 
     public static void SendLeaderboardScore(string leaderboardId, int amount) {
-#if UNITY_WEBGL
+#if UNITY_WEBGL && YG_WEBGL_PLATFORM
         YandexGame.NewLeaderboardScores(leaderboardId, amount);
 #else
         Debug.Log($"Disabled on current platform: Leaderboard id: {leaderboardId} amount: {amount}");
@@ -24,7 +24,7 @@ public static class YGWrapper {
     }
 
     public static long GetServerTime() {
-#if UNITY_WEBGL
+#if UNITY_WEBGL && YG_WEBGL_PLATFORM
         return YandexGame.ServerTime();
 #else
         long res = RealTimeTools.GetTimeSpanMilliseconds(DateTime.Now  - DateTime.UnixEpoch);
