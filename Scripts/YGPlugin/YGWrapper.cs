@@ -6,6 +6,27 @@ using YG;
 #endif
 
 public static class YGWrapper {
+    private static bool _isYgGameReady;
+
+    public static void GameReady() {
+#if UNITY_WEBGL && YG_WEBGL
+        if (!_isYgGameReady) {
+                YandexGame.GameReadyAPI();
+                _isYgGameReady = true;
+        }
+#else
+        Debug.Log($"Disabled on current platform: Yandex game ready.");
+#endif
+    }
+
+    public static void ReviewShow() {
+#if UNITY_WEBGL && YG_WEBGL
+        YandexGame.ReviewShow(true);
+#else
+        Debug.Log($"Disabled on current platform: Yandex game review show.");
+#endif
+    }
+
     public static void SendYandexMetrica(string eventName, string parameter) {
 #if UNITY_WEBGL && YG_WEBGL
         YandexMetrica.Send(eventName, new Dictionary<string, string>() { { eventName, parameter } });
